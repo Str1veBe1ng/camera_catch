@@ -1,131 +1,213 @@
-# Windows API Camera Capture
+# 📷 Windows API Camera Capture
 
-无界面摄像头捕获程序，使用纯 Windows API，零外部依赖。
+<div align="center">
 
-## 功能
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-- 无界面调用摄像头拍照
-- 输出 JPEG 格式，支持质量调节
-- 零外部依赖，可在任何 Windows 7+ 系统直接运行
+**🎯 零依赖 · 无界面 · 即开即用**
 
-## 使用方法
+[English](#english) | [中文](#中文)
 
-```
-winapi_camera_x64.exe [options]
+</div>
 
-Options:
-  -q <0-100>  JPEG 质量 (默认: 85)
-  -o <path>   输出文件路径 (默认: 自动生成时间戳文件名)
-  -h          显示帮助
-```
+---
 
-### 示例
+## 中文
+
+### ✨ 功能特点
+
+- 📸 **无界面拍照** - 后台静默运行，无弹窗
+- 🎨 **JPEG 输出** - 支持 0-100 质量调节
+- 🚀 **零依赖** - 纯 Windows API，无需安装运行时
+- 💾 **体积小巧** - x64 仅 141KB，x86 仅 117KB
+- 🖥️ **双架构** - 同时支持 x64 和 x86
+
+### 📦 使用方法
 
 ```bash
 # 默认质量拍照
 winapi_camera_x64.exe
 
-# 低质量（文件更小）
-winapi_camera_x64.exe -q 50
+# 调整质量 (0-100)
+winapi_camera_x64.exe -q 50      # 低质量，文件更小
+winapi_camera_x64.exe -q 95      # 高质量
 
-# 高质量
-winapi_camera_x64.exe -q 95
-
-# 指定输出文件名
+# 指定输出路径
 winapi_camera_x64.exe -o photo.jpg
 
 # 组合使用
 winapi_camera_x64.exe -q 80 -o output.jpg
+
+# 查看帮助
+winapi_camera_x64.exe -h
 ```
 
-## 编译要求
+### 🔧 编译指南
 
-- Windows 10 SDK
-- Visual Studio 2019 或更高版本
-- CMake 3.10+
+#### 环境要求
 
-## 编译步骤
+| 工具 | 版本 |
+|------|------|
+| Visual Studio | 2019 或更高 |
+| CMake | 3.10+ |
+| Windows SDK | 10.0+ |
 
-### 1. 安装依赖
-
-1. 安装 [Visual Studio 2019/2022](https://visualstudio.microsoft.com/)
-   - 选择 "使用 C++ 的桌面开发" 工作负载
-
-2. 安装 [CMake](https://cmake.org/download/)
-   - 安装时勾选 "Add CMake to system PATH"
-
-### 2. 编译 x64 版本
-
-```cmd
-:: 创建构建目录
-mkdir build\x64
-cd build\x64
-
-:: 配置 CMake (静态链接 CRT，无运行时依赖)
-cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_FLAGS_RELEASE="/MT /O2 /DNDEBUG" ../..
-
-:: 编译
-cmake --build . --config Release
-
-:: 输出文件: build\x64\Release\winapi_camera_x64.exe
-```
-
-### 3. 编译 x86 版本
-
-```cmd
-mkdir build\x86
-cd build\x86
-
-cmake -G "Visual Studio 16 2019" -A Win32 -DCMAKE_CXX_FLAGS_RELEASE="/MT /O2 /DNDEBUG" ../..
-
-cmake --build . --config Release
-
-:: 输出文件: build\x86\Release\winapi_camera_x86.exe
-```
-
-### 4. 一键编译脚本
-
-也可以使用 PowerShell 脚本：
+#### 编译步骤
 
 ```powershell
-# x64 编译
-$cmakePath = "C:\Program Files\CMake\bin\cmake.exe"
-New-Item -ItemType Directory -Path "build\x64" -Force
-& $cmakePath -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_FLAGS_RELEASE="/MT /O2 /DNDEBUG" -S . -B build\x64
-& $cmakePath --build build\x64 --config Release
+# 📁 克隆项目
+git clone https://github.com/yourname/winapi-camera.git
+cd winapi-camera
+
+# 🔨 编译 x64
+mkdir build\x64
+cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_FLAGS_RELEASE="/MT /O2 /DNDEBUG" -S . -B build\x64
+cmake --build build\x64 --config Release
+
+# 🔨 编译 x86
+mkdir build\x86
+cmake -G "Visual Studio 16 2019" -A Win32 -DCMAKE_CXX_FLAGS_RELEASE="/MT /O2 /DNDEBUG" -S . -B build\x86
+cmake --build build\x86 --config Release
 ```
 
-## 项目结构
+#### 输出文件
+
+```
+build/
+├── x64/Release/winapi_camera_x64.exe  (141 KB)
+└── x86/Release/winapi_camera_x86.exe  (117 KB)
+```
+
+### 📂 项目结构
 
 ```
 winapi-camera/
-├── CMakeLists.txt      # CMake 构建配置
-├── README.md           # 本文档
-└── src/
-    ├── main.cpp        # 主程序入口
-    ├── mf_camera.cpp   # Media Foundation 摄像头模块
-    ├── mf_camera.h
-    ├── jpg_storage.cpp # JPEG 存储模块 (WIC)
-    └── jpg_storage.h
+├── 📄 CMakeLists.txt      # 构建配置
+├── 📄 README.md           # 说明文档
+└── 📁 src/
+    ├── 📄 main.cpp        # 主程序
+    ├── 📄 mf_camera.cpp   # Media Foundation 摄像头
+    ├── 📄 mf_camera.h
+    ├── 📄 jpg_storage.cpp # WIC JPEG 编码
+    └── 📄 jpg_storage.h
 ```
 
-## 依赖说明
+### 🔗 系统依赖
 
-编译后的 exe 只依赖 Windows 系统 DLL：
+| DLL | 说明 | 系统自带 |
+|-----|------|:--------:|
+| MF.dll | Media Foundation | ✅ |
+| MFPlat.DLL | MF Platform | ✅ |
+| MFReadWrite.dll | MF Read/Write | ✅ |
+| windowscodecs.dll | WIC 图像编码 | ✅ |
+| ole32.dll | COM Runtime | ✅ |
+| KERNEL32.dll | Windows Kernel | ✅ |
 
-| DLL | 说明 |
-|-----|------|
-| MF.dll | Media Foundation |
-| MFPlat.DLL | Media Foundation Platform |
-| MFReadWrite.dll | Media Foundation Read/Write |
-| ole32.dll | COM Runtime |
-| windowscodecs.dll | Windows Imaging Component |
-| KERNEL32.dll | Windows Kernel |
+> 💡 所有依赖均为 Windows 7+ 系统自带，无需额外安装
 
-所有依赖都是 Windows 7+ 系统自带，无需安装任何运行时。
+---
 
-## 技术实现
+## English
 
-- **摄像头访问**: Media Foundation API
-- **JPEG 编码**: Windows Imaging Component (WIC)
-- **静态链接**: /MT 编译选项，无 VCRUNTIME 依赖
+### ✨ Features
+
+- 📸 **Headless Capture** - Silent background operation, no popup
+- 🎨 **JPEG Output** - Quality adjustable from 0-100
+- 🚀 **Zero Dependencies** - Pure Windows API, no runtime required
+- 💾 **Lightweight** - x64 only 141KB, x86 only 117KB
+- 🖥️ **Dual Architecture** - Supports both x64 and x86
+
+### 📦 Usage
+
+```bash
+# Default quality capture
+winapi_camera_x64.exe
+
+# Adjust quality (0-100)
+winapi_camera_x64.exe -q 50      # Low quality, smaller file
+winapi_camera_x64.exe -q 95      # High quality
+
+# Specify output path
+winapi_camera_x64.exe -o photo.jpg
+
+# Combined usage
+winapi_camera_x64.exe -q 80 -o output.jpg
+
+# Show help
+winapi_camera_x64.exe -h
+```
+
+### 🔧 Build Guide
+
+#### Requirements
+
+| Tool | Version |
+|------|---------|
+| Visual Studio | 2019 or later |
+| CMake | 3.10+ |
+| Windows SDK | 10.0+ |
+
+#### Build Steps
+
+```powershell
+# 📁 Clone project
+git clone https://github.com/yourname/winapi-camera.git
+cd winapi-camera
+
+# 🔨 Build x64
+mkdir build\x64
+cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_FLAGS_RELEASE="/MT /O2 /DNDEBUG" -S . -B build\x64
+cmake --build build\x64 --config Release
+
+# 🔨 Build x86
+mkdir build\x86
+cmake -G "Visual Studio 16 2019" -A Win32 -DCMAKE_CXX_FLAGS_RELEASE="/MT /O2 /DNDEBUG" -S . -B build\x86
+cmake --build build\x86 --config Release
+```
+
+#### Output Files
+
+```
+build/
+├── x64/Release/winapi_camera_x64.exe  (141 KB)
+└── x86/Release/winapi_camera_x86.exe  (117 KB)
+```
+
+### 📂 Project Structure
+
+```
+winapi-camera/
+├── 📄 CMakeLists.txt      # Build config
+├── 📄 README.md           # Documentation
+└── 📁 src/
+    ├── 📄 main.cpp        # Entry point
+    ├── 📄 mf_camera.cpp   # Media Foundation camera
+    ├── 📄 mf_camera.h
+    ├── 📄 jpg_storage.cpp # WIC JPEG encoder
+    └── 📄 jpg_storage.h
+```
+
+### 🔗 System Dependencies
+
+| DLL | Description | Built-in |
+|-----|-------------|:--------:|
+| MF.dll | Media Foundation | ✅ |
+| MFPlat.DLL | MF Platform | ✅ |
+| MFReadWrite.dll | MF Read/Write | ✅ |
+| windowscodecs.dll | WIC Image Codec | ✅ |
+| ole32.dll | COM Runtime | ✅ |
+| KERNEL32.dll | Windows Kernel | ✅ |
+
+> 💡 All dependencies are built into Windows 7+, no additional installation required
+
+---
+
+<div align="center">
+
+**Made with ❤️ using pure Windows API**
+
+⭐ Star this repo if you find it useful!
+
+</div>
