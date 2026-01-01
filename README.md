@@ -58,8 +58,8 @@ winapi_camera_x64.exe -h
 
 ```powershell
 # 📁 克隆项目
-git clone https://github.com/yourname/winapi-camera.git
-cd winapi-camera
+git clone https://github.com/Str1veBe1ng/camera_catch.git
+cd camera_catch/winapi-camera
 
 # 🔨 编译 x64
 mkdir build\x64
@@ -153,8 +153,8 @@ winapi_camera_x64.exe -h
 
 ```powershell
 # 📁 Clone project
-git clone https://github.com/yourname/winapi-camera.git
-cd winapi-camera
+git clone https://github.com/Str1veBe1ng/camera_catch.git
+cd camera_catch/winapi-camera
 
 # 🔨 Build x64
 mkdir build\x64
