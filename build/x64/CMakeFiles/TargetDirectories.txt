@@ -1,0 +1,3 @@
+H:/cline/opencamera/winapi-camera/build/x64/CMakeFiles/winapi_camera.dir
+H:/cline/opencamera/winapi-camera/build/x64/CMakeFiles/ALL_BUILD.dir
+H:/cline/opencamera/winapi-camera/build/x64/CMakeFiles/ZERO_CHECK.dir

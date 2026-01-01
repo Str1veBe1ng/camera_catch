@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="H:\cline\opencamera\winapi-camera\build\x64\CMakeFiles\7ac116d1abbd0cebc7439921657a9b4b\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B9C2A3F4-E1FA-3F92-A1C4-EBFCBE24EC51}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
